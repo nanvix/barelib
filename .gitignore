@@ -1,0 +1,12 @@
+# Build Files
+lib/
+*.a
+*.o
+
+# Ctags
+tags
+
+# IDEs
+*.swp
+*.swo
+*.vscode/
