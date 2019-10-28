@@ -55,6 +55,17 @@
 	extern void *__memchr(const void *s, int c, size_t n);
 
 	/**
+	 * @brief Compares bytes in memory.
+	 *
+	 * @param s1 Target memory area one.
+	 * @param s2 Target memory area two.
+	 *
+	 * @returns Zero if the memory areas are equal, and non-zero
+	 * otherwise.
+	 */
+	extern int __memcmp(const void *s1, const void *s2, size_t n);
+
+	/**
 	 * @brief Copy bytes in memory.
 	 *
 	 * @param s1 Target memory area.
