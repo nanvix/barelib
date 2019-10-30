@@ -36,7 +36,7 @@ int __sprintf(char *str, const char *fmt, ...)
 	/* Convert to raw string. */
 	va_start(args, fmt);
 	len = __vsprintf(str, fmt, args);
-	str[len++] = '\0';
+	str[len] = '\0';
 	va_end(args);
 
 	return (len);
