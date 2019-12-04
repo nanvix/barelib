@@ -37,7 +37,7 @@ export AR = $(TOOLCHAIN_DIR)/or1k-elf-ar
 export CFLAGS := -D__optimsoc__
 export CFLAGS += -nostdlib -nostdinc -ffreestanding
 export CFLAGS += -Wstack-usage=4096
-export CFLAGS += -D__HAS_HW_DIVISION
+export CFLAGS += -D __HAS_HW_DIVISION=0 -D__HAS_HW_MULTIPLICATION=0
 
 # Suffix for Objects
 export OBJ_SUFFIX := optimsoc

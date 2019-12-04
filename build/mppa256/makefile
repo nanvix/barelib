@@ -36,7 +36,7 @@ export AR := $(TOOLCHAIN_DIR)/bin/k1-ar
 # Compiler Options
 export CFLAGS := -D__mppa256__
 export CFLAGS += -mos=bare -march=k1b -mboard=developer
-export CFLAGS += -D __HAS_HW_DIVISION
+export CFLAGS += -D __HAS_HW_DIVISION=1 -D__HAS_HW_MULTIPLICATION=1
 
 #===============================================================================
 
