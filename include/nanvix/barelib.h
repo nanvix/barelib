@@ -298,4 +298,26 @@
 
 /**@}*/
 
+/*============================================================================*
+ * Miscellaneous                                                              *
+ *============================================================================*/
+
+/**
+ * @addtogroup barelib-misc Miscellaneous
+ * @ingroup barelib
+ */
+/**@{*/
+
+	/**
+	 * @brief Multiplies two integers.
+	 *
+	 * @param a First operand.
+	 * @param b Second operand.
+	 *
+	 * @returns The result of @p a times @p b.
+	 */
+	extern int __mult(int a, int b);
+
+/**@}*/
+
 #endif /* NANVIX_BARELIB_H_ */
