@@ -39,12 +39,11 @@ static int itoa(char *str, unsigned num, int base)
 	char *p, *p1, *p2;
 	unsigned divisor;
 
-#ifdef __HAS_HW_DIVISION
+#if (__HAS_HW_DIVISION)
 
-	if (base == 'd')
-		divisor = 10;
+	divisor = 10;
 
-	else
+	if (base == 'x')
 	{
 		*b++ = '0'; *b++ = 'x';
 		divisor = 16;
@@ -73,7 +72,7 @@ static int itoa(char *str, unsigned num, int base)
 	/* Convert number. */
 	do
 	{
-		unsigned remainder = num  & 0xf;
+		unsigned remainder = num & 0xf;
 
 		*p++ = (remainder < 10) ?
 			remainder + '0' : remainder + 'a' - 10;
@@ -83,8 +82,10 @@ static int itoa(char *str, unsigned num, int base)
 
 	/* Fill up with zeros. */
 	if (divisor == 16)
+	{
 		while ((p - b) < 8)
 			*p++ = '0';
+	}
 
 	/* Reverse BUF. */
 	p1 = b; p2 = p - 1;
@@ -111,9 +112,13 @@ static int itoa64(char *str, unsigned long num, int base)
 {
 	char *b = str;
 	char *p, *p1, *p2;
-	unsigned divisor = 10;
+	unsigned divisor;
 
-	if(base == 'h')
+#if (__HAS_HW_DIVISION)
+
+	divisor = 10;
+
+	if (base == 'h')
 	{
 		divisor = 16;
 		*b++ = '0';
@@ -131,9 +136,31 @@ static int itoa64(char *str, unsigned long num, int base)
 			remainder + '0' : remainder + 'a' - 10;
 	} while (num /= divisor);
 
+#else
+
+	((void) base);
+
+	divisor = 16;
+	*b++ = '0'; *b++ = 'x';
+
+	/* Convert number. */
+	do
+	{
+		unsigned long remainder = num & 0xf;
+
+		*p++ = (remainder < 10) ?
+			remainder + '0' : remainder + 'a' - 10;
+	} while ((num  = (num >> 4)));
+
+#endif
+
+
+	/* Fill up with zeros. */
 	if (divisor == 16)
+	{
 		while ((p - b) < 16)
 			*p++ = '0';
+	}
 
 	/* Reverse BUF. */
 	p1 = b; p2 = p - 1;

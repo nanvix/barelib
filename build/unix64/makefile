@@ -37,7 +37,7 @@ export AR = ar
 # Compiler Options
 export CFLAGS := -D__unix64__
 export CFLAGS += -Wstack-usage=4096
-export CFLAGS += -D __HAS_HW_DIVISION
+export CFLAGS += -D __HAS_HW_DIVISION=1 -D__HAS_HW_MULTIPLICATION=1
 
 # Suffix for Objects
 export OBJ_SUFFIX := unix64

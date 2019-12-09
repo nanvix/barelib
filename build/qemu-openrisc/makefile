@@ -38,7 +38,7 @@ export CFLAGS := -D__qemu_openrisc__
 export CFLAGS += -nostdlib -nostdinc -ffreestanding
 export CFLAGS += -Wstack-usage=4096
 export CFLAGS += -Wno-missing-profile
-export CFLAGS += -D __HAS_HW_DIVISION
+export CFLAGS += -D __HAS_HW_DIVISION=1 -D__HAS_HW_MULTIPLICATION=1
 
 # Suffix for Objects
 export OBJ_SUFFIX := qemu-openrisc
