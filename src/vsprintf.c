@@ -108,7 +108,7 @@ static int itoa(char *str, unsigned num, int base)
  *
  * @returns The length of the output string.
  */
-static int itoa64(char *str, unsigned long num, int base)
+static int itoa64(char *str, unsigned long long num, int base)
 {
 	char *b = str;
 	char *p, *p1, *p2;
@@ -130,7 +130,7 @@ static int itoa64(char *str, unsigned long num, int base)
 	/* Convert number. */
 	do
 	{
-		unsigned long remainder = num % divisor;
+		unsigned long long remainder = num % divisor;
 
 		*p++ = (remainder < 10) ?
 			remainder + '0' : remainder + 'a' - 10;
@@ -146,7 +146,7 @@ static int itoa64(char *str, unsigned long num, int base)
 	/* Convert number. */
 	do
 	{
-		unsigned long remainder = num & 0xf;
+		unsigned long long remainder = num & 0xf;
 
 		*p++ = (remainder < 10) ?
 			remainder + '0' : remainder + 'a' - 10;
@@ -214,11 +214,11 @@ int __vsprintf(char *str, const char *fmt, va_list args)
 				case 'l':
 					if(*(fmt + 1) == 'x')
 					{
-						str += itoa64(str, va_arg(args, unsigned long int), 'h');
+						str += itoa64(str, va_arg(args, unsigned long long int), 'h');
 						++fmt;
 					}
 					else
-						str += itoa64(str, va_arg(args, unsigned long int), 'l');
+						str += itoa64(str, va_arg(args, unsigned long long int), 'l');
 					break;
 
 				/* String. */
