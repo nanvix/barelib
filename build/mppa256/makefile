@@ -37,6 +37,7 @@ export AR := $(TOOLCHAIN_DIR)/bin/k1-ar
 export CFLAGS := -D__mppa256__
 export CFLAGS += -mos=bare -march=k1b -mboard=developer
 export CFLAGS += -D __HAS_HW_DIVISION=1 -D__HAS_HW_MULTIPLICATION=1
+export CFLAGS += -D __GLIBC_BUG__
 
 #===============================================================================
 

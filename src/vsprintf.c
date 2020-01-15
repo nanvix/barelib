@@ -56,9 +56,20 @@ static int itoa(char *str, unsigned num, int base)
 	{
 		unsigned remainder = num % divisor;
 
+#ifdef __GLIBC_BUG__
+		remainder = (divisor == 10 ? (num % 10) : (num % 16));
+#else
+		remainder = num % divisor;
+#endif
+
 		*p++ = (remainder < 10) ?
 			remainder + '0' : remainder + 'a' - 10;
+
+#ifdef __GLIBC_BUG__
+	} while ((divisor == 10 ? (num /= 10) : (num /= 16)));
+#else
 	} while (num /= divisor);
+#endif
 
 #else
 
@@ -130,11 +141,22 @@ static int itoa64(char *str, unsigned long long num, int base)
 	/* Convert number. */
 	do
 	{
-		unsigned long long remainder = num % divisor;
+		unsigned long long remainder;
+
+#ifdef __GLIBC_BUG__
+		remainder = (divisor == 10 ? (num % 10) : (num % 16));
+#else
+		remainder = num % divisor;
+#endif
 
 		*p++ = (remainder < 10) ?
 			remainder + '0' : remainder + 'a' - 10;
+
+#ifdef __GLIBC_BUG__
+	} while ((divisor == 10 ? (num /= 10) : (num /= 16)));
+#else
 	} while (num /= divisor);
+#endif
 
 #else
 
