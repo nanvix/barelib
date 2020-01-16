@@ -110,6 +110,8 @@ static int itoa(char *str, unsigned num, int base)
 	return(p - str);
 }
 
+#ifndef __qemu_riscv32__
+
 /**
  * @brief Converts an 64 bit integer to a string.
  *
@@ -196,6 +198,8 @@ static int itoa64(char *str, unsigned long long num, int base)
 	return(p - str);
 }
 
+#endif /* !qemu_riscv32 */
+
 /**
  * @brief Writes formatted data from variable argument list to a string.
  *
@@ -233,6 +237,9 @@ int __vsprintf(char *str, const char *fmt, va_list args)
 				case 'x':
 					str += itoa(str, va_arg(args, unsigned int), 'x');
 					break;
+
+#ifndef __qemu_riscv32__
+
 				case 'l':
 					if(*(fmt + 1) == 'x')
 					{
@@ -242,6 +249,8 @@ int __vsprintf(char *str, const char *fmt, va_list args)
 					else
 						str += itoa64(str, va_arg(args, unsigned long long int), 'l');
 					break;
+
+#endif
 
 				/* String. */
                 case 's':
