@@ -62,7 +62,7 @@ include $(MAKEDIR)/makefile
 #===============================================================================
 
 export CFLAGS += -std=c99 -fno-builtin
-export CFLAGS += -ansi -pedantic-errors
+export CFLAGS += -pedantic-errors
 export CFLAGS += -Wall -Wextra -Werror -Wa,--warn
 export CFLAGS += -Winit-self -Wswitch-default -Wfloat-equal
 export CFLAGS += -Wundef -Wshadow -Wuninitialized -Wlogical-op
