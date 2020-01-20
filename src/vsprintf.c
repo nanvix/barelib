@@ -54,7 +54,7 @@ static int itoa(char *str, unsigned num, int base)
 	/* Convert number. */
 	do
 	{
-		unsigned remainder = num % divisor;
+		unsigned remainder;
 
 #ifdef __GLIBC_BUG__
 		remainder = (divisor == 10 ? (num % 10) : (num % 16));
