@@ -41,7 +41,7 @@ export BUILDDIR := $(ROOTDIR)/build
 export DOCDIR   := $(ROOTDIR)/doc
 export INCDIR   := $(ROOTDIR)/include
 export LIBDIR   := $(ROOTDIR)/lib
-export MAKEDIR  := $(BUILDDIR)/$(TARGET)
+export MAKEDIR  := $(BUILDDIR)/$(TARGET)/make
 export SRCDIR   := $(ROOTDIR)/src
 export TOOLSDIR := $(ROOTDIR)/utils
 
@@ -55,7 +55,7 @@ export KLIB = barelib-$(TARGET).a
 # Target-Specific Make Rules
 #===============================================================================
 
-include $(MAKEDIR)/makefile
+include $(MAKEDIR)/makefile.barelib
 
 #===============================================================================
 # Toolchain Configuration
