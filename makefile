@@ -32,6 +32,15 @@
 # Verbose build?
 export VERBOSE ?= no
 
+# Release Version?
+export RELEASE ?= no
+
+# Use Docker?
+export DOCKER ?= no
+
+# Stall regression tests?
+export SUPPRESS_TESTS ?= no
+
 #===============================================================================
 # Directories
 #===============================================================================
