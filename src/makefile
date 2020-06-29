@@ -21,10 +21,11 @@
 # SOFTWARE.
 
 #===============================================================================
-# Toolchain Configuration
+# Binaries Soucers and Objects
 #===============================================================================
 
-#===============================================================================
+# Binary
+ARCHIVE = $(KLIB)
 
 # C Source Files
 SRC = $(wildcard *.c)
@@ -32,38 +33,6 @@ SRC = $(wildcard *.c)
 # Object Files
 OBJ = $(SRC:.c=.$(OBJ_SUFFIX).o)
 
-# Builds all object files.
-all: $(OBJ)
-ifeq ($(VERBOSE), no)
-	@echo [AR] $(KLIB)
-	@$(AR) $(ARFLAGS) $(LIBDIR)/$(KLIB) $(OBJ)
-else
-	$(AR) $(ARFLAGS) $(LIBDIR)/$(KLIB) $(OBJ)
-endif
+#===============================================================================
 
-# Cleans all object files.
-clean:
-ifeq ($(VERBOSE), no)
-	@echo [CLEAN] $(OBJ)
-	@rm -rf $(OBJ)
-else
-	rm -rf $(OBJ)
-endif
-
-# Cleans everything.
-distclean: clean
-ifeq ($(VERBOSE), no)
-	@echo [CLEAN] $(KLIB)
-	@rm -rf $(LIBDIR)/$(KLIB)
-else
-	rm -rf $(LIBDIR)/$(KLIB)
-endif
-
-# Builds a c source file.
-%.$(OBJ_SUFFIX).o: %.c
-ifeq ($(VERBOSE), no)
-	@echo [CC] $@
-	@$(CC) $(CFLAGS) $< -c -o $@
-else
-	$(CC) $(CFLAGS) $< -c -o $@
-endif
+include $(BUILDDIR)/makefile.archive
