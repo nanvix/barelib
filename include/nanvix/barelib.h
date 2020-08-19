@@ -418,6 +418,16 @@
 /**@{*/
 
 	/**
+	 * @brief Divides two integers.
+	 *
+	 * @param a First operand.
+	 * @param b Second operand.
+	 *
+	 * @returns The result of @p a divided by @p b.
+	 */
+	extern int __div(int a, int b);
+
+	/**
 	 * @brief Multiplies two integers.
 	 *
 	 * @param a First operand.

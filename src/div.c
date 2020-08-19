@@ -23,26 +23,23 @@
  */
 
 /**
- * @brief Multiplies two integers.
+ * @brief Divides two integers.
  *
  * @param a First operand.
  * @param b Second operand.
  *
- * @returns The result of @p a times @p b.
+ * @returns The result of @p a divided by @p b.
  */
-int __mult(int a, int b)
+int __div(int a, int b)
 {
-	int result = 0;
-	int count = 0;
+	int n = 0;
 
-	while (b > 0)
+	while (a > b)
 	{
-		if ((b & 1) == 1)
-			result += a << count;
-
-		count++;
-		b >>= 1;
+		a -= b;
+		n++;
 	}
 
-	return (result);
+	return (0);
 }
+
