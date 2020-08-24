@@ -24,6 +24,19 @@
 
 #include <posix/stddef.h>
 
+/* Nonzero if either X or Y is not aligned on a "long" boundary.  */
+#define UNALIGNED(X, Y) \
+  (((long)X & (sizeof (long) - 1)) | ((long)Y & (sizeof (long) - 1)))
+
+/* How many bytes are copied each iteration of the 4X unrolled loop.  */
+#define BIGBLOCKSIZE    (sizeof (long) << 2)
+
+/* How many bytes are copied each iteration of the word copy loop.  */
+#define LITTLEBLOCKSIZE (sizeof (long))
+
+/* Threshhold for punting to the byte copier.  */
+#define TOO_SMALL(LEN)  ((LEN) < BIGBLOCKSIZE)
+
 /**
  * The __memcpy() function copies @p n characters from the object
  * pointed to by @p s2 into the object pointed to by @p s1. If copying
@@ -32,14 +45,42 @@
  */
 void *__memcpy(void *s1, const void *s2, size_t n)
 {
-    char *p1;
-    const char* p2;
+	char *dst = s1;
+	const char *src = s2;
+	long *aligned_dst;
+	const long *aligned_src;
 
-    p1 = s1;
-    p2 = s2;
+	/* If the size is small, or either SRC or DST is unaligned,
+	   then punt into the byte copy loop.	This should be rare. */
+	if (!TOO_SMALL(n) && !UNALIGNED (src, dst))
+	{
+		aligned_dst = (long*)dst;
+		aligned_src = (long*)src;
 
-    while (n-- > 0)
-		*p1++ = *p2++;
+		/* Copy 4X long words at a time if possible. */
+		while (n >= BIGBLOCKSIZE)
+		{
+			*aligned_dst++ = *aligned_src++;
+			*aligned_dst++ = *aligned_src++;
+			*aligned_dst++ = *aligned_src++;
+			*aligned_dst++ = *aligned_src++;
+			n -= BIGBLOCKSIZE;
+		}
 
-    return (p1);
+		/* Copy one long word at a time if possible. */
+		while (n >= LITTLEBLOCKSIZE)
+		{
+			*aligned_dst++ = *aligned_src++;
+			n -= LITTLEBLOCKSIZE;
+		}
+
+		/* Pick up any residual with a byte copier. */
+		dst = (char*)aligned_dst;
+		src = (char*)aligned_src;
+	}
+
+	while (n--)
+		*dst++ = *src++;
+
+	return s1;
 }
