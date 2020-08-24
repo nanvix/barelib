@@ -40,6 +40,6 @@ int __div(int a, int b)
 		n++;
 	}
 
-	return (0);
+	return (n);
 }
 
