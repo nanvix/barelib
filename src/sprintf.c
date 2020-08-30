@@ -26,6 +26,11 @@
 #include <nanvix/barelib.h>
 
 /**
+ * @brief Truncate size.
+ */
+#define TRUNCATE_SIZE 128
+
+/**
  * @todo TODO provide a detailed description for this function.
  */
 int __sprintf(char *str, const char *fmt, ...)
@@ -35,8 +40,8 @@ int __sprintf(char *str, const char *fmt, ...)
 
 	/* Convert to raw string. */
 	va_start(args, fmt);
-	len = __vsprintf(str, fmt, args);
-	str[len] = '\0';
+	len = __vsnprintf(str, TRUNCATE_SIZE + 1, fmt, args);
+	str[len + 1] = '\0';
 	va_end(args);
 
 	return (len);
