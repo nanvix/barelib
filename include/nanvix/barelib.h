@@ -277,17 +277,6 @@
 /**@{*/
 
 	/**
-	 * @brief Formats a string of a stdarg argument list.
-	 *
-	 * @param str  Target string.
-	 * @param fmt  Formatted string.
-	 * @param args Variable arguments list.
-	 *
-	 * @returns The number of characters written to the target string.
-	 */
-	extern int __vsprintf(char *str, const char *fmt, va_list args);
-
-	/**
 	 * @brief Formats a string.
 	 *
 	 * @param str Target string.
@@ -296,6 +285,18 @@
 	 * @returns The number of characters written to the target string.
 	 */
 	extern int __sprintf(char *str, const char *fmt, ...);
+
+	/**
+	 * @brief Writes at most size bytes of formatted data to str.
+	 *
+	 * @param str	Output string.
+	 * @param size	Write at most size bytes (including null byte).
+	 * @param fmt	Formatted string.
+	 * @param args	Variable arguments list.
+	 *
+	 * @returns Length of output string.
+	 */
+	extern int __vsnprintf(char *str, size_t size, const char *fmt, va_list args);
 
 /**@}*/
 
