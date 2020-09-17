@@ -458,6 +458,66 @@
 	 */
 	extern int __div_pw2(int a, int b);
 
+	/**
+	 * @brief Divides two integers.
+	 *
+	 * @param a First operand.
+	 * @param b Second operand.
+	 *
+	 * Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/divmod.c
+	 *
+	 * @returns The result of @p a divided by @p b.
+	 */
+	extern long __divsi3(long a, long b);
+
+	/**
+	 * @brief Module between two integers.
+	 *
+	 * @param a First operand.
+	 * @param b Second operand.
+	 *
+	 * Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/divmod.c
+	 *
+	 * @returns The result of @p a module by @p b.
+	 */
+	extern long __modsi3(long a, long b);
+
+	/**
+	 * @brief Divides two unsigned integers.
+	 *
+	 * @param a First operand.
+	 * @param b Second operand.
+	 *
+	 * Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/udivmod.c
+	 *
+	 * @returns The result of @p a divided by @p b.
+	 */
+	extern unsigned long __udivsi3(unsigned long a, unsigned long b);
+
+	/**
+	 * @brief Module between two unsigned integers.
+	 *
+	 * @param a First operand.
+	 * @param b Second operand.
+	 *
+	 * Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/udivmod.c
+	 *
+	 * @returns The result of @p a module by @p b.
+	 */
+	extern unsigned long __umodsi3(unsigned long a, unsigned long b);
+
+	/**
+	 * @brief Divide between two unsigned long integers.
+	 *
+	 * @param a First operand.
+	 * @param b Second operand.
+	 *
+	 * Source: https://github.com/gcc-mirror/gcc/blob/master/libgcc/udivmodsi4.c
+	 *
+	 * @returns The result of @p a divide by @p b.
+	 */
+	extern unsigned long __udivmodsi4(unsigned long num, unsigned long den, int modwanted);
+
 /**@}*/
 
 #endif /* NANVIX_BARELIB_H_ */
