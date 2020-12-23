@@ -1,7 +1,9 @@
 Baremetal Libraries for Nanvix
 ===============================
-[![Build
-Status](https://travis-ci.com/nanvix/barelib.svg?branch=unstable)](https://travis-ci.com/nanvix/barelib)
+
+[![Build Status](http://quadro.icei.pucminas.br:8080/buildStatus/icon?subject=mppa256&job=nanvix%2Fbarelib%2Fmppa256)](http://quadro.icei.pucminas.br:8080/job/nanvix/job/barelib/job/mppa256/)
+[![Build Status](http://quadro.icei.pucminas.br:8080/buildStatus/icon?subject=qemu&job=nanvix%2Fbarelib%2Fqemu)](http://quadro.icei.pucminas.br:8080/job/nanvix/job/barelib/job/qemu/)
+[![Build Status](http://quadro.icei.pucminas.br:8080/buildStatus/icon?subject=unix&job=nanvix%2Fbarelib%2Fmppa256)](http://quadro.icei.pucminas.br:8080/job/nanvix/job/barelib/job/mppa256/)
 [![Join us on Slack!](https://img.shields.io/badge/chat-on%20Slack-e01563.svg)](https://join.slack.com/t/nanvix/shared_invite/enQtMzY2Nzg5OTQ4NTAyLTAxMmYwOGQ0ZmU2NDg2NTJiMWU1OWVkMWJhMWY4NzMzY2E1NTIyMjNiOTVlZDFmOTcyMmM2NDljMTAzOGI1NGY)
 
 License & Maintainers
